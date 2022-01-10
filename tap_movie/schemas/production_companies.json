@@ -1,0 +1,29 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "logo_path": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "name": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "origin_country": {
+            "type": [
+                "null",
+                "string"
+            ]
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "english_name": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "iso_639_1": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "name": {
+            "type": [
+                "null",
+                "string"
+            ]
+        }
+    }
+}

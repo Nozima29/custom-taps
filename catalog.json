@@ -1,0 +1,345 @@
+{
+  "streams": [
+    {
+      "tap_stream_id": "spoken_languages",
+      "key_properties": [],
+      "schema": {
+        "properties": {
+          "english_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "iso_639_1": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "spoken_languages",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "id"
+            ],
+            "selected": "true",
+            "forced-replication-method": "INCREMENTAL",
+            "valid-replication-keys": [
+              "generated_timestamp"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "production_countries",
+      "key_properties": [],
+      "schema": {
+        "properties": {
+          "iso_3166_1": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "production_countries",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "id"
+            ],
+            "selected": "true",
+            "forced-replication-method": "INCREMENTAL",
+            "valid-replication-keys": [
+              "generated_timestamp"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "movie",
+      "key_properties": [],
+      "schema": {
+        "properties": {
+          "adult": {
+            "type": [
+              "null",
+              "boolean"
+            ]
+          },
+          "backdrop_path": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "belongs_to_collection": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "budget": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "genres_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "homepage": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "imdb_id": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "original_language": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "original_title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "overview": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "popularity": {
+            "type": [
+              "null",
+              "float"
+            ]
+          },
+          "poster_path": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "production_companies_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "production_countries_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "release_date": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "revenue": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "runtime": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "spoken_languages_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "tagline": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "video": {
+            "type": [
+              "null",
+              "boolean"
+            ]
+          },
+          "vote_average": {
+            "type": [
+              "null",
+              "float"
+            ]
+          },
+          "vote_count": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "movie",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "id"
+            ],
+            "selected": "true",
+            "forced-replication-method": "INCREMENTAL",
+            "valid-replication-keys": [
+              "generated_timestamp"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "genres",
+      "key_properties": [],
+      "schema": {
+        "properties": {
+          "id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "genres",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "id"
+            ],
+            "selected": "true",
+            "forced-replication-method": "INCREMENTAL",
+            "valid-replication-keys": [
+              "generated_timestamp"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "production_companies",
+      "key_properties": [],
+      "schema": {
+        "properties": {
+          "id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "logo_path": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "origin_country": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "production_companies",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "id"
+            ],
+            "selected": "true",
+            "forced-replication-method": "INCREMENTAL",
+            "valid-replication-keys": [
+              "generated_timestamp"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
