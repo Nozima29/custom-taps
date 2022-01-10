@@ -11,7 +11,7 @@ Running Tap:
     source ~/.virtualenvs/tap-movie/bin/activate
     pip install tap-movie
     
-    tap-movie -c config.json --catalog catalog.json --discover (for doscover mode)
+    tap-movie -c config.json --catalog catalog.json --discover (for discover mode)
 
     or
 
