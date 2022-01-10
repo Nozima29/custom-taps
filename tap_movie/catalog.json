@@ -1,145 +1,32 @@
 {
   "streams": [
     {
-      "tap_stream_id": "/home/nozima/work/AL/singer-start/tap-movie/tap-movie/tap_movie/schemas/movie.json",
+      "tap_stream_id": "spoken_languages",
       "key_properties": [],
       "schema": {
         "properties": {
-          "adult": {
-            "type": "boolean"
+          "english_name": {
+            "type": [
+              "null",
+              "string"
+            ]
           },
-          "backdrop_path": {
-            "type": "string"
+          "iso_639_1": {
+            "type": [
+              "null",
+              "string"
+            ]
           },
-          "belongs_to_collection": {
-            "type": "null"
-          },
-          "budget": {
-            "type": "integer"
-          },
-          "genres": {
-            "items": {
-              "properties": {
-                "id": {
-                  "type": "integer"
-                },
-                "name": {
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            },
-            "type": "array"
-          },
-          "homepage": {
-            "type": "string"
-          },
-          "id": {
-            "type": "integer"
-          },
-          "imdb_id": {
-            "type": "string"
-          },
-          "original_language": {
-            "type": "string"
-          },
-          "original_title": {
-            "type": "string"
-          },
-          "overview": {
-            "type": "string"
-          },
-          "popularity": {
-            "type": "number"
-          },
-          "poster_path": {
-            "type": "string"
-          },
-          "production_companies": {
-            "items": {
-              "properties": {
-                "id": {
-                  "type": "integer"
-                },
-                "logo_path": {
-                  "type": [
-                    "null",
-                    "string"
-                  ]
-                },
-                "name": {
-                  "type": "string"
-                },
-                "origin_country": {
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            },
-            "type": "array"
-          },
-          "production_countries": {
-            "items": {
-              "properties": {
-                "iso_3166_1": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            },
-            "type": "array"
-          },
-          "release_date": {
-            "type": "string"
-          },
-          "revenue": {
-            "type": "integer"
-          },
-          "runtime": {
-            "type": "integer"
-          },
-          "spoken_languages": {
-            "items": {
-              "properties": {
-                "english_name": {
-                  "type": "string"
-                },
-                "iso_639_1": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            },
-            "type": "array"
-          },
-          "status": {
-            "type": "string"
-          },
-          "tagline": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "video": {
-            "type": "boolean"
-          },
-          "vote_average": {
-            "type": "number"
-          },
-          "vote_count": {
-            "type": "integer"
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
           }
         },
         "type": "object"
       },
-      "stream": "/home/nozima/work/AL/singer-start/tap-movie/tap-movie/tap_movie/schemas/movie.json",
+      "stream": "spoken_languages",
       "metadata": [
         {
           "breadcrumb": [],
@@ -147,7 +34,305 @@
             "table-key-properties": [
               "id"
             ],
-            "selected": true,
+            "selected": "true",
+            "forced-replication-method": "INCREMENTAL",
+            "valid-replication-keys": [
+              "generated_timestamp"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "production_countries",
+      "key_properties": [],
+      "schema": {
+        "properties": {
+          "iso_3166_1": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "production_countries",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "id"
+            ],
+            "selected": "true",
+            "forced-replication-method": "INCREMENTAL",
+            "valid-replication-keys": [
+              "generated_timestamp"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "movie",
+      "key_properties": [],
+      "schema": {
+        "properties": {
+          "adult": {
+            "type": [
+              "null",
+              "boolean"
+            ]
+          },
+          "backdrop_path": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "belongs_to_collection": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "budget": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "genres_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "homepage": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "imdb_id": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "original_language": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "original_title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "overview": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "popularity": {
+            "type": [
+              "null",
+              "float"
+            ]
+          },
+          "poster_path": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "production_companies_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "production_countries_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "release_date": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "revenue": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "runtime": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "spoken_languages_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "tagline": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "video": {
+            "type": [
+              "null",
+              "boolean"
+            ]
+          },
+          "vote_average": {
+            "type": [
+              "null",
+              "float"
+            ]
+          },
+          "vote_count": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "movie",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "id"
+            ],
+            "selected": "true",
+            "forced-replication-method": "INCREMENTAL",
+            "valid-replication-keys": [
+              "generated_timestamp"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "genres",
+      "key_properties": [],
+      "schema": {
+        "properties": {
+          "id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "genres",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "id"
+            ],
+            "selected": "true",
+            "forced-replication-method": "INCREMENTAL",
+            "valid-replication-keys": [
+              "generated_timestamp"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "production_companies",
+      "key_properties": [],
+      "schema": {
+        "properties": {
+          "id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "logo_path": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "origin_country": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "production_companies",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "id"
+            ],
+            "selected": "true",
             "forced-replication-method": "INCREMENTAL",
             "valid-replication-keys": [
               "generated_timestamp"
