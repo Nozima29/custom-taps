@@ -11,7 +11,7 @@ from tap_movie.connect import MovieConnect
 
 REQUIRED_CONFIG_KEYS = ["start_date", "api_key"]
 LOGGER = singer.get_logger()
-API_KEY = "a463e23f4a85ede8714949bc767318b5"
+API_KEY = ""
 
 
 def get_abs_path(path):
