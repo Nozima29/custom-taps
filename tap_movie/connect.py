@@ -4,19 +4,18 @@ import singer
 LOGGER = singer.get_logger()
 
 
-class MovieConnect:
+class MovieAPI:
     def __init__(self, key, end_id, start_id=100):
         self.start_id = start_id
         self.end_id = end_id
         self.key = key
+        self.url = "https://api.themoviedb.org/3/movie/"
 
     def fetch_data(self):
         data = []
         id = self.start_id
         while id < self.end_id:
-            url = "https://api.themoviedb.org/3/movie/{}?api_key={}".format(
-                id, self.key
-            )
+            url = self.url + "{}?api_key={}".format(id, self.key)
             try:
                 client = requests.get(url)
                 LOGGER.info("Fetching data from {}".format(url))
