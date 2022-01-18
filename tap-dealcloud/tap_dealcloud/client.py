@@ -11,7 +11,6 @@ class DealCloudClient:
         self.password = config['password']
         self.clientid = config['clientid']
         self.api_key = config['api_key']
-        self.api_key = "F8oTHn9x2uwkqmJ0QTgULeHzNfe-Mj55xJwqVF73GAE1"
         self.base_url = config['base_url']
         self.token_url = config['token_url']
         self.header_basic = config['header_basic']
