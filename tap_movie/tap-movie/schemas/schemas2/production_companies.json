@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "logo_path": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "origin_country": {
+      "type": "string"
+    }
+  }
+}

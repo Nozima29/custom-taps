@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "entryListId": {
+      "type": "integer"
+    }
+  }
+}

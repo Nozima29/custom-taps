@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "standardName": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "baseUtcOffset": {
+      "type": "string"
+    }
+  }
+}

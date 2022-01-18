@@ -1,0 +1,88 @@
+{
+  "type": "object",
+  "properties": {
+    "apiName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "fieldType": {
+      "type": "integer"
+    },
+    "isRequired": {
+      "type": "boolean"
+    },
+    "allowDuplicates": {
+      "type": "boolean"
+    },
+    "warnOnNearDuplicates": {
+      "type": "boolean"
+    },
+    "isMoney": {
+      "type": "boolean"
+    },
+    "isMultiSelect": {
+      "type": "boolean"
+    },
+    "choiceFieldId": {
+      "type": "integer"
+    },
+    "choiceOrder": {
+      "type": "integer"
+    },
+    "entryLists": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "systemFieldType": {
+      "type": "integer"
+    },
+    "choiceValues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "parentID": {
+            "type": "integer"
+          },
+          "seqNumber": {
+            "type": "integer"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "entryListId": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "isKey": {
+      "type": "boolean"
+    },
+    "isCalculated": {
+      "type": "boolean"
+    },
+    "isAttachment": {
+      "type": "boolean"
+    },
+    "isStoreRequestSupported": {
+      "type": "boolean"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "entryListId": {
+      "type": "integer"
+    }
+  }
+}

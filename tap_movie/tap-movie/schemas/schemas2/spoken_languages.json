@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "english_name": {
+      "type": "string"
+    },
+    "iso_639_1": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

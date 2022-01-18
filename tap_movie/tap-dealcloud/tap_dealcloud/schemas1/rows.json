@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "primaryLists": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "entryListId": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "optionalParameters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "columnId": {
+            "type": "integer"
+          },
+          "columnName": {
+            "type": "string"
+          },
+          "defaultValue": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

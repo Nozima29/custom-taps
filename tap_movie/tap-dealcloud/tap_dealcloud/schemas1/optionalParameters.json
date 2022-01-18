@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "columnId": {
+      "type": "integer"
+    },
+    "columnName": {
+      "type": "string"
+    },
+    "defaultValue": {
+      "type": "integer"
+    }
+  }
+}

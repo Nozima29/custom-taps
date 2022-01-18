@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "apiName": {
+      "type": "string"
+    },
+    "singularName": {
+      "type": "string"
+    },
+    "pluralName": {
+      "type": "string"
+    },
+    "entryListType": {
+      "type": "integer"
+    },
+    "entryListSubType": {
+      "type": "integer"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "entryListId": {
+      "type": "integer"
+    }
+  }
+}

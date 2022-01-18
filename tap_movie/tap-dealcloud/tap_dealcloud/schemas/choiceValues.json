@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "parentID": {
+      "type": "integer"
+    },
+    "seqNumber": {
+      "type": "integer"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "entryListId": {
+      "type": "integer"
+    }
+  }
+}
