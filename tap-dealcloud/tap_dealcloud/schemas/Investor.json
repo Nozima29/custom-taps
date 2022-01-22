@@ -1,0 +1,270 @@
+{
+  "type": "object",
+  "properties": {
+    "EntryId": {
+      "type": "integer"
+    },
+    "InvestorName": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "2ndLienSize": {
+      "type": "string"
+    },
+    "2ndLienTargetReturn": {
+      "type": "string"
+    },
+    "Address": {
+      "type": "string"
+    },
+    "AUM": {
+      "type": "string"
+    },
+    "CanPlayLead": {
+      "type": "boolean"
+    },
+    "City": {
+      "type": "string"
+    },
+    "CompanyMainPhone": {
+      "type": "string"
+    },
+    "Country": {
+      "type": "string"
+    },
+    "CoveragePerson": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "Credit": {
+      "type": "boolean"
+    },
+    "FundsUnderManagementUSD": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "currencyCode": {
+          "type": "string"
+        }
+      }
+    },
+    "GeographicInterests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "seqNumber": {
+            "type": "integer"
+          },
+          "isAutoPdf": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "entryListId": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "InvestmentStrategy": {
+      "type": "string"
+    },
+    "InvestorType": {
+      "type": "object",
+      "properties": {
+        "seqNumber": {
+          "type": "integer"
+        },
+        "isAutoPdf": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "LastContactDate": {
+      "type": "string"
+    },
+    "MezzanineSize": {
+      "type": "string"
+    },
+    "MezzanineTargetReturn": {
+      "type": "string"
+    },
+    "PostalCode": {
+      "type": "string"
+    },
+    "PreferredsSize": {
+      "type": "string"
+    },
+    "PreferredsTargetReturn": {
+      "type": "string"
+    },
+    "PrimaryContact": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "Region": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "State": {
+      "type": "string"
+    },
+    "SummaryBusinessDescription": {
+      "type": "string"
+    },
+    "Tier": {
+      "type": "object",
+      "properties": {
+        "seqNumber": {
+          "type": "integer"
+        },
+        "isAutoPdf": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "ZipCode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "CreatedBy": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "ModifiedBy": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "CreatedDate": {
+      "type": "string"
+    },
+    "ModifiedDate": {
+      "type": "string"
+    }
+  }
+}

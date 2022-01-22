@@ -1,0 +1,100 @@
+{
+  "type": "object",
+  "properties": {
+    "EntryId": {
+      "type": "integer"
+    },
+    "Campaign": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "Click": {
+      "type": "number"
+    },
+    "Contact": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "Delivered": {
+      "type": "number"
+    },
+    "Open": {
+      "type": "number"
+    },
+    "Unsubscribe": {
+      "type": "number"
+    },
+    "ModifiedBy": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "CreatedBy": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "CreatedDate": {
+      "type": "string"
+    },
+    "ModifiedDate": {
+      "type": "string"
+    }
+  }
+}

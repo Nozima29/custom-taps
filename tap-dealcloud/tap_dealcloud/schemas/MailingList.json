@@ -1,0 +1,71 @@
+{
+  "type": "object",
+  "properties": {
+    "EntryId": {
+      "type": "integer"
+    },
+    "MailingList": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "CreatedBy": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "ModifiedBy": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "ModifiedDate": {
+      "type": "string"
+    },
+    "CreatedDate": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "type": "object",
+  "properties": {
+    "EntryId": {
+      "type": "integer"
+    },
+    "Name": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "BoardMeeting": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "Company": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "Description": {
+      "type": "string"
+    },
+    "ProjectManager": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "ProjectType": {
+      "type": "object",
+      "properties": {
+        "seqNumber": {
+          "type": "integer"
+        },
+        "isAutoPdf": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "StartDate": {
+      "type": "string"
+    },
+    "Status": {
+      "type": "object",
+      "properties": {
+        "seqNumber": {
+          "type": "integer"
+        },
+        "isAutoPdf": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "Timeline": {
+      "type": "object",
+      "properties": {
+        "seqNumber": {
+          "type": "integer"
+        },
+        "isAutoPdf": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "CreatedBy": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "ModifiedBy": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "ModifiedDate": {
+      "type": "string"
+    },
+    "CreatedDate": {
+      "type": "string"
+    }
+  }
+}

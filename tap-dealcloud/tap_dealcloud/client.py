@@ -27,8 +27,7 @@ class DealCloudClient:
     def get_oauth_token(self):
         payload = 'Scope=data&grant_type=client_credentials'
         headers = {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Accept-Charset': 'UTF-8',
+            'Content-Type': 'application/json',
             'Authorization': 'Basic {}'.format(self.header_basic)
         }
         response = requests.request(
@@ -42,36 +41,45 @@ class DealCloudClient:
         header = {'Authorization': 'Bearer ' + token}
         return header
 
-    def get_rows(self):
-        """Method for Data section Rows extraction"""
-
-        prefix = 'data'
-        url = "{base}/{version}/{prefix}/rows/view?api_key={key}".format(
-            base=self.base_url, version=self.version, prefix=prefix, key=self.api_key)
+    def make_request(self, url):
         header = self.get_header()
         response = requests.get(url, headers=header, data=self.params)
+        return response
 
-        return response.json()['rows']
-
-    def get_schema_data(self):
-        """Method for schema data entries extraction"""
-
+    def get_entrytypes(self):
         prefix = 'schema'
-        endpoints = ['users', 'currencies', 'allfields', 'fieldtypes', 'systemfieldtypes',
-                     'systementrytypes', 'filteroperations', 'entrytypes', 'timezones']
-        schemas = {}
-        for endpoint in endpoints:
-            try:
-                url = "{base}/{version}/{prefix}/{endpoint}?api_key={key}".format(
-                    base=self.base_url, version=self.version, prefix=prefix, endpoint=endpoint, key=self.api_key)
-                header = self.get_header()
-                response = requests.get(url, headers=header, data=self.params)
-                schemas.update({endpoint: response.json()})
-                #LOGGER.info("Fetching data for ", endpoint)
-            except:
-                LOGGER.info("Error in data extraction!")
-                return
-        # data = self.get_data()
-        # schemas.update({"rows": data})
+        endpoint = 'entrytypes'
+        try:
+            url = "{base}/{version}/{prefix}/{endpoint}?api_key={key}".format(
+                base=self.base_url, version=self.version, prefix=prefix, endpoint=endpoint, key=self.api_key)
+            response = self.make_request(url)
+        except:
+            LOGGER.info(f"Error in {endpoint} extraction!")
+            return
 
-        return schemas
+        return response.json()
+
+    def get_entry_data(self):
+        prefix = 'data/entrydata/rows'
+        data = dict()
+        entrytypes = self.get_entrytypes()
+        for entrytype in entrytypes:
+            try:
+                url = "{base}/{version}/{prefix}/{entryTypeId}?api_key={key}".format(
+                    base=self.base_url, version=self.version, prefix=prefix,
+                    entryTypeId=entrytype['id'], key=self.api_key)
+
+                response = self.make_request(url)
+                entry = response.json()
+
+                LOGGER.info(f"Fetched data for {entrytype['apiName']}")
+
+            except:
+                LOGGER.info("Error in entrydata extraction!")
+                return
+
+            if entry["rows"] and isinstance(entry["rows"], list):
+                data[entrytype["apiName"]] = entry.get("rows")
+                # print(data)
+
+        return data

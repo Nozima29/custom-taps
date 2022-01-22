@@ -1,0 +1,77 @@
+{
+  "type": "object",
+  "properties": {
+    "EntryId": {
+      "type": "integer"
+    },
+    "Events": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "PageName": {
+      "type": "string"
+    },
+    "PageType": {
+      "type": "object",
+      "properties": {
+        "seqNumber": {
+          "type": "integer"
+        },
+        "isAutoPdf": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "PublishDateTime": {
+      "type": "string"
+    },
+    "Status": {
+      "type": "object",
+      "properties": {
+        "seqNumber": {
+          "type": "integer"
+        },
+        "isAutoPdf": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entryListId": {
+          "type": "integer"
+        }
+      }
+    },
+    "Title": {
+      "type": "string"
+    },
+    "URL": {
+      "type": "string"
+    }
+  }
+}

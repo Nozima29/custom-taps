@@ -36,17 +36,6 @@ def get_schemas(config, streams):
         field_metadata[stream_name]["key_properties"] = stream_metadata.get(
             "key_properties", None
         )
-
-        if (
-            "nested_entities" in stream_metadata.keys()
-            and stream_metadata["nested_entities"]
-        ):
-            nested_schemas, nested_field_metadata = get_schemas(
-                config, stream_metadata["nested_entities"]
-            )
-            schemas.update(nested_schemas)
-            field_metadata.update(nested_field_metadata)
-
     return schemas, field_metadata
 
 

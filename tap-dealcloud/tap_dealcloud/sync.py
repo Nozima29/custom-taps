@@ -1,6 +1,5 @@
-import json
 import singer
-
+from datetime import datetime
 from tap_dealcloud.client import DealCloudClient
 from tap_dealcloud import streams
 
@@ -19,23 +18,16 @@ def write_schema(catalog, stream_name):
 
 def sync(config, state, catalog):
     client = DealCloudClient(config)
-    data = client.get_schema_data()
+    entries = client.get_entry_data()
 
-    for stream_name, endpoint_config in streams.STREAMS.items():
-        # print(stream_name)
-        # data = data[stream_name.lower()]
-        # print(data[stream_name.lower()])
-        LOGGER.info("Processing records for: {}".format(stream_name))
-        write_schema(catalog, stream_name)
-        singer.write_records(stream_name, data[stream_name.lower()])
-        if endpoint_config.get("nested_entities"):
-            for nested_entity in endpoint_config["nested_entities"].keys():
-                for rec in data[stream_name.lower()]:
-                    if nested_entity in rec.keys():
-                        if rec[nested_entity]:
-                            # print(rec[nested_entity])
-                            write_schema(catalog, nested_entity)
-                            singer.write_records(
-                                nested_entity, rec[nested_entity])
+    for stream_name, _ in streams.STREAMS.items():
+        entry = entries[stream_name]
+        if entry:
+            LOGGER.info("Processing records for: {}".format(stream_name))
+            write_schema(catalog, stream_name)
+            singer.write_records(stream_name, entry)
+
+    # state['last_sync_at'] = datetime.now()
+    # singer.write_state(state)
 
     return
