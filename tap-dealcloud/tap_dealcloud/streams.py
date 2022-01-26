@@ -273,6 +273,44 @@ STREAMS = {
             }
         }
     },
+    "DocumentFolders": {
+        "key_properties": [
+            "EntryId"
+        ],
+        "replication_method": "FULL_TABLE",
+        "nested_entities": {
+            "Name": {
+                "key_properties": [
+                    "id"
+                ],
+                "replication_method": "FULL_TABLE"
+            },
+            "FieldFrom": {
+                "key_properties": [
+                    "id"
+                ],
+                "replication_method": "FULL_TABLE"
+            },
+            "FieldTo": {
+                "key_properties": [
+                    "id"
+                ],
+                "replication_method": "FULL_TABLE"
+            },
+            "CreatedBy": {
+                "key_properties": [
+                    "id"
+                ],
+                "replication_method": "FULL_TABLE"
+            },
+            "ModifiedBy": {
+                "key_properties": [
+                    "id"
+                ],
+                "replication_method": "FULL_TABLE"
+            }
+        }
+    },
     "Company": {
         "key_properties": [
             "EntryId"

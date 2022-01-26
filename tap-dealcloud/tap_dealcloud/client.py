@@ -1,6 +1,7 @@
 import requests
 import json
 import singer
+import backoff
 
 LOGGER = singer.get_logger()
 
@@ -24,6 +25,12 @@ class DealCloudClient:
             "clientid": self.clientid
         }
 
+    @backoff.on_exception(
+        backoff.expo,
+        requests.exceptions.RequestException,
+        max_tries=5,
+        giveup=lambda e: e.response is not None and 400 <= e.response.status_code < 500,
+        factor=2)
     def get_oauth_token(self):
         payload = 'Scope=data&grant_type=client_credentials'
         headers = {
@@ -41,25 +48,34 @@ class DealCloudClient:
         header = {'Authorization': 'Bearer ' + token}
         return header
 
+    @backoff.on_exception(
+        backoff.expo,
+        requests.exceptions.RequestException,
+        max_tries=5,
+        giveup=lambda e: e.response is not None and 400 <= e.response.status_code < 500,
+        factor=2)
     def make_request(self, url):
         header = self.get_header()
         response = requests.get(url, headers=header, data=self.params)
         return response
 
     def get_entrytypes(self):
+        """Method to collect all registered entrytypes in schema"""
+
         prefix = 'schema'
         endpoint = 'entrytypes'
         try:
             url = "{base}/{version}/{prefix}/{endpoint}?api_key={key}".format(
                 base=self.base_url, version=self.version, prefix=prefix, endpoint=endpoint, key=self.api_key)
             response = self.make_request(url)
-        except:
-            LOGGER.info(f"Error in {endpoint} extraction!")
-            return
+        except DealCloudAuthError as err:
+            raise err
 
         return response.json()
 
     def get_entry_data(self):
+        """Method to get all data rows belonging to particular entrytype"""
+
         prefix = 'data/entrydata/rows'
         data = dict()
         entrytypes = self.get_entrytypes()
@@ -74,12 +90,29 @@ class DealCloudClient:
 
                 LOGGER.info(f"Fetched data for {entrytype['apiName']}")
 
-            except:
-                LOGGER.info("Error in entrydata extraction!")
-                return
+            except DealCloudAuthError as err:
+                raise err
 
-            if entry["rows"] and isinstance(entry["rows"], list):
+            if entry["rows"]:
                 data[entrytype["apiName"]] = entry.get("rows")
-                # print(data)
 
         return data
+
+
+class DealCloudError(Exception):
+    def __init__(self, message=None, request=None):
+        super().__init__(message)
+        self.message = message
+        self.request = request
+
+
+class DealCloudAuthError(DealCloudError):
+    pass
+
+
+ERROR_CODE_EXCEPTION_MAPPING = {
+    401: {
+        "raise_exception": DealCloudAuthError,
+        "message": "Invalid auth credentials."
+    }
+}

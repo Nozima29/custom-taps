@@ -1629,6 +1629,224 @@
       ]
     },
     {
+      "tap_stream_id": "DocumentFolders",
+      "key_properties": [
+        "EntryId"
+      ],
+      "schema": {
+        "properties": {
+          "EntryId": {
+            "type": "integer"
+          },
+          "Name": {
+            "properties": {
+              "type": {
+                "type": "integer"
+              },
+              "id": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              },
+              "entryListId": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "FieldFrom": {
+            "properties": {
+              "type": {
+                "type": "integer"
+              },
+              "id": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              },
+              "entryListId": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "FieldTo": {
+            "properties": {
+              "type": {
+                "type": "integer"
+              },
+              "id": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              },
+              "entryListId": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "FolderURL": {
+            "type": "string"
+          },
+          "CreatedBy": {
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "type": {
+                "type": "integer"
+              },
+              "id": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              },
+              "entryListId": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "ModifiedBy": {
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "type": {
+                "type": "integer"
+              },
+              "id": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              },
+              "entryListId": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "CreatedDate": {
+            "type": "string"
+          },
+          "ModifiedDate": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "stream": "DocumentFolders",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "EntryId"
+            ],
+            "forced-replication-method": "FULL_TABLE",
+            "inclusion": "available",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "EntryId"
+          ],
+          "metadata": {
+            "inclusion": "automatic",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "Name"
+          ],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "FieldFrom"
+          ],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "FieldTo"
+          ],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "FolderURL"
+          ],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "CreatedBy"
+          ],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "ModifiedBy"
+          ],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "CreatedDate"
+          ],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "ModifiedDate"
+          ],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true
+          }
+        }
+      ]
+    },
+    {
       "tap_stream_id": "Company",
       "key_properties": [
         "EntryId"
