@@ -6,6 +6,25 @@ import backoff
 LOGGER = singer.get_logger()
 
 
+class DealCloudError(Exception):
+    def __init__(self, message=None, request=None):
+        super().__init__(message)
+        self.message = message
+        self.request = request
+
+
+class DealCloudAuthError(DealCloudError):
+    pass
+
+
+ERROR_CODE_EXCEPTION_MAPPING = {
+    401: {
+        "raise_exception": DealCloudAuthError,
+        "message": "Invalid auth credentials."
+    }
+}
+
+
 class DealCloudClient:
     def __init__(self, config):
         self.username = config['username']
@@ -27,14 +46,15 @@ class DealCloudClient:
 
     @backoff.on_exception(
         backoff.expo,
-        requests.exceptions.RequestException,
+        (requests.exceptions.RequestException,
+         DealCloudAuthError),
         max_tries=5,
-        giveup=lambda e: e.response is not None and 400 <= e.response.status_code < 500,
         factor=2)
     def get_oauth_token(self):
         payload = 'Scope=data&grant_type=client_credentials'
         headers = {
             'Content-Type': 'application/json',
+            'Accept': 'application/json',
             'Authorization': 'Basic {}'.format(self.header_basic)
         }
         response = requests.request(
@@ -50,9 +70,9 @@ class DealCloudClient:
 
     @backoff.on_exception(
         backoff.expo,
-        requests.exceptions.RequestException,
+        (requests.exceptions.RequestException,
+         DealCloudAuthError),
         max_tries=5,
-        giveup=lambda e: e.response is not None and 400 <= e.response.status_code < 500,
         factor=2)
     def make_request(self, url):
         header = self.get_header()
@@ -97,22 +117,3 @@ class DealCloudClient:
                 data[entrytype["apiName"]] = entry.get("rows")
 
         return data
-
-
-class DealCloudError(Exception):
-    def __init__(self, message=None, request=None):
-        super().__init__(message)
-        self.message = message
-        self.request = request
-
-
-class DealCloudAuthError(DealCloudError):
-    pass
-
-
-ERROR_CODE_EXCEPTION_MAPPING = {
-    401: {
-        "raise_exception": DealCloudAuthError,
-        "message": "Invalid auth credentials."
-    }
-}
