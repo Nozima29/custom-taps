@@ -82,7 +82,7 @@ class DealCloudClient:
         response = requests.get(url, headers=header, data=self.params)
         return response
 
-    def write_entries(self, f_name, data):
+    def write_entrytypes(self, f_name, data):
         json_data = dict()
         with open(f_name, 'w') as wf:
             for entry in data:
@@ -113,7 +113,7 @@ class DealCloudClient:
             except DealCloudAuthError as err:
                 raise err
             entries = response.json()
-            self.write_entries(assets, entries)
+            self.write_entrytypes(assets, entries)
 
             for entry in entries:
                 if entry["apiName"] == stream_name:
