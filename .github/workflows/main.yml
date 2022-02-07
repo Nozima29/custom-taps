@@ -27,7 +27,7 @@ jobs:
       - name: Install the tap
         run: |
           source tap-dealcloud/bin/activate
-          python setup.py install          
+          python tap-dealcloud/setup.py install          
         
       - name: Fetch config files from the secrets
         env:
