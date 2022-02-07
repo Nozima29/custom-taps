@@ -31,4 +31,4 @@ jobs:
       - name: 'Unit Tests'          
         run: |
           . venv/bin/activate            
-          pytest tests
+          python -m unittest discover tests
