@@ -1,0 +1,34 @@
+name: client-test
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  Test:    
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2  
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: install dependencies
+        run: |
+          python3 -m venv venv
+          . venv/bin/activate
+          pip install --upgrade pip
+      - name: Fetch config files from the secrets
+        env:
+          TAP_CONFIG: ${{ secrets.TAP_CONFIG }}
+          TARGET_CONFIG: ${{ secrets.TARGET_CONFIG }}
+        run: |
+          echo $TAP_CONFIG > tap-dealcloud/client_config.json          
+        
+      - name: 'Unit Tests'          
+        run: |
+          . venv/bin/activate            
+          pytest tests
