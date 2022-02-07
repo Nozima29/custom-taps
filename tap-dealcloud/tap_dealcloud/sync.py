@@ -1,5 +1,5 @@
 import singer
-from datetime import datetime, timedelta
+from datetime import datetime
 from tap_dealcloud.client import DealCloudClient
 from tap_dealcloud import streams
 
@@ -16,7 +16,7 @@ def write_state(state, last_sync_at):
 
 
 def sync(config, state, catalog):
-    last_sync_at = datetime.now() - timedelta(hours=5)
+    last_sync_at = datetime.utcnow()
     client = DealCloudClient(config, state)
     for stream_name, _ in streams.STREAMS.items():
         entry = client.get_data(stream_name)
@@ -27,6 +27,7 @@ def sync(config, state, catalog):
             singer.write_schema(stream_name, schema, stream.key_properties)
             singer.write_records(stream_name, entry)
 
+    LOGGER.info("Sync succeeded!")
     write_state(state, last_sync_at)
 
     return

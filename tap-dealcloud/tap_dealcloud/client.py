@@ -1,6 +1,7 @@
 from tap_dealcloud.discover import get_abs_path
 from os import path
 import requests
+import base64
 import json
 import singer
 import backoff
@@ -29,23 +30,20 @@ ERROR_CODE_EXCEPTION_MAPPING = {
 
 class DealCloudClient:
     def __init__(self, config, state=None):
-        self.username = config['username']
-        self.password = config['password']
-        self.clientid = config['clientid']
-        self.api_key = config['api_key']
-        self.base_url = config['base_url']
-        self.token_url = config['token_url']
-        self.header_basic = config['header_basic']
-        self.version = config['version']
+        self.clientid = config["clientid"]
+        self.api_key = config["api_key"]
+        self.account = config["account"]
+        self.base_url = f"https://{self.account}.dealcloud.com/api/rest"
+        self.token_url = self.base_url+"/v1/oauth/token"
         self.state = state
 
     @property
-    def params(self):
-        return {
-            "username": self.username,
-            "password": self.password,
-            "clientid": self.clientid
-        }
+    def basic_token(self):
+        base_token = f"{self.clientid}:{self.api_key}"
+        base_token = base_token.encode('ascii')
+        base_token = base64.b64encode(base_token)
+        base_token = base_token.decode('ascii')
+        return base_token
 
     @backoff.on_exception(
         backoff.expo,
@@ -58,7 +56,7 @@ class DealCloudClient:
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': 'Basic {}'.format(self.header_basic)
+            'Authorization': 'Basic {}'.format(self.basic_token)
         }
         response = requests.request(
             "POST", self.token_url, headers=headers, data=payload)
@@ -79,10 +77,18 @@ class DealCloudClient:
         factor=2)
     def make_request(self, url):
         header = self.get_header()
-        response = requests.get(url, headers=header, data=self.params)
+        response = requests.get(url, headers=header)
         return response
 
     def write_entrytypes(self, f_name, data):
+        """
+        Method for writing/saving all existing entrytypes (tables) with IDs in order to avoid 
+        multiple access in each api call
+        format:
+            {
+                "table_name": "table_id"
+            }
+        """
         json_data = dict()
         with open(f_name, 'w') as wf:
             for entry in data:
@@ -92,7 +98,7 @@ class DealCloudClient:
 
     def get_entrytype(self, stream_name):
         """
-        Methods for getting and saving all registered table names with corresponding ID
+        Method for getting and saving all registered table names with corresponding ID
         return: ID of a single table (entrytype)
         """
 
@@ -107,8 +113,8 @@ class DealCloudClient:
                 entry_data = json_data[stream_name]
         else:
             try:
-                url = "{base}/{version}/{prefix}/{endpoint}?api_key={key}".format(
-                    base=self.base_url, version=self.version, prefix=prefix, endpoint=endpoint, key=self.api_key)
+                url = "{base}/v4/{prefix}/{endpoint}?api_key={key}".format(
+                    base=self.base_url, prefix=prefix, endpoint=endpoint, key=self.api_key)
                 response = self.make_request(url)
             except DealCloudAuthError as err:
                 raise err
@@ -121,37 +127,59 @@ class DealCloudClient:
 
         return entry_data
 
-    def get_updates(self, entrytype):
-        data = []
-        url = "{base}/{version}/data/entrydata/{entryTypeId}/entries/history?modifiedSince={state}&api_key={key}".format(
-            base=self.base_url, version=self.version, state=self.state["last_sync_at"],
+    def get_updates(self, entrytype, stream_name):
+        """Method for returning updated/deleted/inserted records"""
+
+        updates = None
+        url = "{base}/v4/data/entrydata/{entryTypeId}/entries/history?modifiedSince={state}&api_key={key}".format(
+            base=self.base_url, state=self.state["last_sync_at"],
             entryTypeId=entrytype, key=self.api_key)
         response = self.make_request(url)
         entry = response.json()
         if entry:
-            data = self.find_updated_row(entry, data)
-        if data:
-            return data
+            updates, del_rec, updated_rec, new_rec = self.find_updated_row(
+                entry)
+            LOGGER.info(
+                f"Found {del_rec} deletion(s), {updated_rec} update(s), {new_rec} insertion(s) for {stream_name}")
+        if updates:
+            return updates
 
-    def find_updated_row(self, entry, data):
+    def find_updated_row(self, entry):
+        """
+        Helper function for get_updates() method
+        Fetches corresponding updated data
+        """
+        data = list()
+        deleted_records_count = 0
+        updated_records_count = 0
+        inserted_records_count = 0
+
         for e in entry:
             if e["isDeleted"] == True:
-                data.append(
-                    {"EntryId": e["id"], "_sdc_deleted_at": True})
+                deleted_records_count += 1
+                data.append({
+                    "EntryId": e["id"],
+                    "_sdc_deleted_at": True
+                })
             else:
                 ent = self.get_rows(e["entryListId"], e["id"])
+                if ent["CreatedDate"] == ent["ModifiedDate"]:
+                    inserted_records_count += 1
+                else:
+                    updated_records_count += 1
+
                 if isinstance(ent, dict):
                     data.append(ent)
-        return data
+        return data, deleted_records_count, updated_records_count, inserted_records_count
 
     def get_rows(self, entrytype, entryId=None):
+        """Method for getting all data rows (entries)"""
+
         entries = None
         prefix = 'data/entrydata/rows'
         try:
-            url = "{base}/{version}/{prefix}/{entryTypeId}?api_key={key}".format(
-                base=self.base_url, version=self.version, prefix=prefix,
-                entryTypeId=entrytype, key=self.api_key)
-
+            url = "{base}/v4/{prefix}/{entryTypeId}?api_key={key}".format(
+                base=self.base_url, prefix=prefix, entryTypeId=entrytype, key=self.api_key)
             response = self.make_request(url)
             entry = response.json()
 
@@ -173,9 +201,11 @@ class DealCloudClient:
         entrytype = self.get_entrytype(stream_name)
 
         if self.state:
-            data = self.get_updates(entrytype)
+            data = self.get_updates(entrytype, stream_name)
 
         else:
             data = self.get_rows(entrytype)
+            LOGGER.info("{} records to be migrated to {}".format(
+                len(data), stream_name))
 
         return data
