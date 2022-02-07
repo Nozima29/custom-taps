@@ -14,10 +14,9 @@ setup(
         "singer-python",
         "requests",
     ],
-    entry_points="""
-    [console_scripts]
-    tap-dealcloud=tap-dealcloud/tap_dealcloud:main
-    """,
+    entry_points={
+        'console_scripts': ['tap-dealcloud=tap_dealcloud:main']
+    },
     packages=["tap-dealcloud/tap_dealcloud"],
     package_data={
         "schemas": ["tap-dealcloud/tap_dealcloud/schemas/*.json"]
