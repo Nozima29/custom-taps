@@ -4,6 +4,8 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  merge:
+    branches: [ master ]
 
 jobs:
   Test:    
@@ -23,8 +25,7 @@ jobs:
           pip install --upgrade pip
       - name: Fetch config files from the secrets
         env:
-          TAP_CONFIG: ${{ secrets.TAP_CONFIG }}
-          TARGET_CONFIG: ${{ secrets.TARGET_CONFIG }}
+          TAP_CONFIG: ${{ secrets.TAP_CONFIG }}          
         run: |
           echo $TAP_CONFIG > tap-dealcloud/client_config.json          
         
