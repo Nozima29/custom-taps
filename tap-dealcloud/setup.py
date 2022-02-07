@@ -8,7 +8,7 @@ setup(
     author="Stitch",
     url="http://singer.io",
     classifiers=["Programming Language :: Python :: 3 :: Only"],
-    py_modules=["tap_dealcloud"],
+    py_modules=["tap-dealcloud/tap_dealcloud"],
     install_requires=[
         # NB: Pin these to a more specific version for tap reliability
         "singer-python",
@@ -16,11 +16,11 @@ setup(
     ],
     entry_points="""
     [console_scripts]
-    tap-dealcloud=tap_dealcloud:main
+    tap-dealcloud=tap-dealcloud/tap_dealcloud:main
     """,
-    packages=["tap_dealcloud"],
-    package_data = {
-        "schemas": ["tap_dealcloud/schemas/*.json"]
+    packages=["tap-dealcloud/tap_dealcloud"],
+    package_data={
+        "schemas": ["tap-dealcloud/tap_dealcloud/schemas/*.json"]
     },
     include_package_data=True,
 )
