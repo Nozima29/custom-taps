@@ -37,4 +37,4 @@ jobs:
         
       - name: 'Unit Tests'          
         run: |                    
-          python -m unittest discover tests
+          python -m unittest discover tap-dealcloud/tests
