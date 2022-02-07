@@ -17,6 +17,7 @@ class TestDealcloudClient(unittest.TestCase):
             data = json.loads(data)
             id = data[stream_name]
         stream_id = self.instance.get_entrytype(stream_name)
+        print("nozzzzzz")
         self.assertEqual(stream_id, id)
 
     def test_entry_document(self):
