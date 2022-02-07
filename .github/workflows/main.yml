@@ -4,9 +4,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  merge:
-    branches: [ master ]
-
+  
 jobs:
   Test:    
     runs-on: ubuntu-latest
@@ -20,9 +18,17 @@ jobs:
 
       - name: install dependencies
         run: |
-          python3 -m venv venv
-          . venv/bin/activate
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
+      
+      - name: Create VENV for the tap
+        run: |
+          python3 -m venv tap-dealcloud
+      
+      - name: Install the tap
+        run: |
+          source tap-dealcloud/bin/activate
+          python setup.py install          
+        
       - name: Fetch config files from the secrets
         env:
           TAP_CONFIG: ${{ secrets.TAP_CONFIG }}          
@@ -30,6 +36,5 @@ jobs:
           echo $TAP_CONFIG > tap-dealcloud/client_config.json          
         
       - name: 'Unit Tests'          
-        run: |
-          . venv/bin/activate            
+        run: |                    
           python -m unittest discover tests
