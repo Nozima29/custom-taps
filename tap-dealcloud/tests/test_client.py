@@ -5,7 +5,7 @@ import json
 
 class TestDealcloudClient(unittest.TestCase):
     def setUp(self):
-        config_file = "client_config.json"
+        config_file = "tap-dealcloud/client_config.json "
         with open(config_file, "r") as rf:
             config = json.loads(rf.read())
         self.instance = DealCloudClient(config)
